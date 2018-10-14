@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSF可视化配置，这个标题其实是没用的</title>
+    <link rel="stylesheet" href="../../lib/bootstrap-3.3.1/css/bootstrap.min.css">
+    <style>
+        html, body, #app {
+            height: 100%;
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px
+        }
+
+        ::-webkit-scrollbar-track {
+            border-radius: 10px;
+            background-color: #d8dce5
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: #adadad
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #929292
+        }
+
+        ::-webkit-scrollbar-thumb:active {
+            background-color: #666363
+        }
+
+        ::-webkit-scrollbar-corner {
+            background-color: #535353
+        }
+
+        ::-webkit-scrollbar-resizer {
+            background-color: #ff6e00
+        }
+        .page-title {
+            margin-bottom: 20px;
+        }
+
+        .control-label {
+            font-weight: normal;
+        }
+
+        .btn-primary {
+            background-color: #1890ff;
+            border-color: #1890ff;
+            outline: none;
+        }
+
+        .btn-primary:focus,
+        .btn-primary:hover {
+            background-color: #40a9ff;
+            border-color: #40a9ff;
+            outline: none;
+        }
+
+        .btn-primary.active,
+        .btn-primary:active {
+            background-color: #096dd9;
+            border-color: #096dd9;
+            color: #fff;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="container-fluid">
+        <h3 class="page-title">Webview演示</h3>
+        <p class="alert alert-warning" style="width: 65%">说明：VSCode中的WebView和普通网页几乎没有任何差别，唯一差别在于它多了一个acquireVsCodeApi方法，利用这个方法可以和插件本身进行消息通信，所以插件能实现什么功能，Webview也可以实现什么功能。</p>
+        <p class="alert alert-success" style="width: 65%">所以我们这里只需要简单演示一下消息通信，基于此能实现什么样的强大功能大家自己发挥。</p>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">当前工程名</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">{{projectName}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">简单功能演示</label>
+                <div class="col-sm-6">
+                    <a href="javascript:;" class="btn btn-sm btn-primary" @click="openFileInFinder">在Finder中打开文件</a>
+                    <a href="javascript:;" class="btn btn-sm btn-danger" @click="openFileInVscode">在VSCode中打开文件</a>
+                    <a href="javascript:;" class="btn btn-sm btn-success" @click="openUrlInBrowser">浏览器打开前端艺术家</a>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <script src="../../lib/jquery/jquery.min.js"></script>
+    <script src="../../lib/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+    <script src="../../lib/vue-2.5.17/vue.js"></script>
+    <script src="../../src/view/test-webview.js"></script>
+</body>
+
+</html>
