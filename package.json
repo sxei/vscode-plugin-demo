@@ -2,8 +2,12 @@
     "name": "vscode-plugin-demo",
     "displayName": "vscode-plugin-demo",
     "description": "VSCode插件demo",
-    "keywords": ["vscode", "plugin", "demo"],
-    "version": "1.0.0",
+    "keywords": [
+        "vscode",
+        "plugin",
+        "demo"
+    ],
+    "version": "1.0.1",
     "publisher": "sxei",
     "engines": {
         "vscode": "^1.27.0"
