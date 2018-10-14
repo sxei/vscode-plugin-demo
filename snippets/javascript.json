@@ -1,0 +1,28 @@
+{
+    "for循环": {
+        "prefix": "for",
+        "body": [
+          "for (const ${2:item} of ${1:array}) {",
+          "\t$3",
+          "}"
+        ],
+        "description": "for循环"
+    },
+    "ajax": {
+        "prefix": "ajax",
+        "body": [
+            "$.ajax({",
+            "    url: '$1',",
+            "    method: '${2:POST}',",
+            "    datatype: 'json',",
+            "    success: data => {",
+            "        $3;",
+            "    },",
+            "    error: err => {",
+            "        $4;",
+            "    }",
+            "})"
+        ],
+        "description": "ajax模块"
+    }
+}

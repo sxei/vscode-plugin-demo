@@ -17,18 +17,13 @@
     ],
     "icon": "images/icon.png",
     "activationEvents": [
-        "onCommand:extension.sayHello",
-        "onCommand:extension.demo.getCurrentFilePath",
-        "onCommand:extension.demo.testMenuShow",
-        "onCommand:extension.demo.openWebview",
-        "onLanguage:javascript",
-        "onLanguage:json"
+        "*"
     ],
     "main": "./src/extension",
     "contributes": {
         "configuration": {
             "type": "object",
-            "title": "vscode-plugin-demo",
+            "title": "Code插件demo",
             "properties": {
                 "vscodePluginDemo.yourName": {
                     "type": "string",
@@ -38,7 +33,7 @@
                 "vscodePluginDemo.showTip": {
                     "type": "boolean",
                     "default": true,
-                    "description": "是否在每次启动时显示欢迎提示！"
+                    "description": "启动时显示自定义欢迎页"
                 }
             }
         },
@@ -62,6 +57,10 @@
             {
                 "command": "extension.demo.openWebview",
                 "title": "打开WebView"
+            },
+            {
+                "command": "extension.demo.showWelcome",
+                "title": "显示自定义欢迎页"
             }
         ],
         "keybindings": [
@@ -124,7 +123,49 @@
                     "group": "navigation"
                 }
             ]
-        }
+        },
+        "snippets": [
+            {
+                "language": "javascript",
+                "path": "./snippets/javascript.json"
+            },
+            {
+                "language": "html",
+                "path": "./snippets/html.json"
+            }
+        ],
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "beautifulGirl",
+                    "title": "美女",
+                    "icon": "images/beautifulGirl.svg"
+                }
+            ]
+        },
+        "views": {
+            "beautifulGirl": [
+                {
+                    "id": "beautifulGirl1",
+                    "name": "国内美女"
+                },
+                {
+                    "id": "beautifulGirl2",
+                    "name": "国外美女"
+                },
+                {
+                    "id": "beautifulGirl3",
+                    "name": "人妖"
+                }
+            ]
+        },
+        "iconThemes": [
+            {
+                "id": "testIconTheme",
+                "label": "测试图标主题",
+                "path": "./theme/icon-theme.json"
+            }
+        ]
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install",

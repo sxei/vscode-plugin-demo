@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSF可视化配置，这个标题其实是没用的</title>
+    <title>自定义欢迎页</title>
     <link rel="stylesheet" href="../../lib/bootstrap-3.3.1/css/bootstrap.min.css">
     <style>
         html, body, #app {
@@ -72,22 +72,16 @@
 
 <body>
     <div id="app" class="container-fluid">
-        <h3 class="page-title">Webview演示</h3>
-        <p class="alert alert-warning" style="width: 65%">说明：VSCode中的WebView和普通网页几乎没有任何差别，唯一差别在于它多了一个acquireVsCodeApi方法，利用这个方法可以和插件本身进行消息通信，所以插件能实现什么功能，Webview也可以实现什么功能。</p>
-        <p class="alert alert-success" style="width: 65%">所以我们这里只需要简单演示一下消息通信，基于此能实现什么样的强大功能大家自己发挥。</p>
+        <h3 class="page-title">自定义欢迎页</h3>
+        <p class="alert alert-success" style="width: 300px;">{{userName}}，{{time}}好！</p>
         <form class="form-horizontal">
             <div class="form-group">
-                <label class="col-sm-2 control-label">当前工程名</label>
-                <div class="col-sm-10">
-                    <p class="form-control-static">{{projectName}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">简单功能演示</label>
                 <div class="col-sm-6">
-                    <a href="javascript:;" class="btn btn-sm btn-primary" @click="openFileInFinder">在Finder中打开文件</a>
-                    <a href="javascript:;" class="btn btn-sm btn-danger" @click="openFileInVscode">在VSCode中打开文件</a>
-                    <a href="javascript:;" class="btn btn-sm btn-success" @click="openUrlInBrowser">浏览器打开前端艺术家</a>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" v-model="show"> 启动时显示自定义欢迎页
+                        </label>
+                    </div>
                 </div>
             </div>
         </form>
@@ -96,7 +90,7 @@
     <script src="../../lib/jquery/jquery.min.js"></script>
     <script src="../../lib/bootstrap-3.3.1/js/bootstrap.min.js"></script>
     <script src="../../lib/vue-2.5.17/vue.js"></script>
-    <script src="../../src/view/test-webview.js"></script>
+    <script src="../../src/view/custom-welcome.js"></script>
 </body>
 
 </html>
