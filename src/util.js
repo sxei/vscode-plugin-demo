@@ -148,50 +148,6 @@ const util = {
         return diskPath.with({ scheme: 'vscode-resource' }).toString();
     },
     /**
-     * 格式化一段JSON字符串，支持解析非标准JSON
-     * 不同于绝大多数格式化工具，本方法支持设置缩进方式以及左大括号是否换行
-     * @start 2016-08-24
-     * @param {Object} json 要格式化的json串
-     * @param {Object} indent 缩进方式，可以是若干个空格和tab，默认tab缩进，如 2个空格："  "、4个空格："	"、tab："	"
-     * @param {Object} leftBracesInSameLine 左大括号是否保持在同一行，默认 false
-     */
-    formatToSimpleJSON: function (json, indent, leftBracesInSameLine)
-    {
-        function getIndentStr(level)
-        {
-            var str = '';
-            for(var i=0; i<level; i++) str += (indent || '	');
-            return str;
-        }
-        function format(obj, level)
-        {
-            level = level == undefined ? 0 : level;
-            var result = '';
-            if(typeof obj == 'object' && obj != null) // 如果是object或者array
-            {
-                var isArray = obj instanceof Array, idx = 0;
-                result += (isArray ? '[' : '{') + '\n';
-                for(var i in obj)
-                {
-                    result += (idx++ > 0 ? '\n' : ''); // 如果不是数组或对象的第一个内容，追加逗号
-                    var nextIsObj = (typeof obj[i] == 'object' && obj[i] != null), indentStr = getIndentStr(level+1);
-                    result += (isArray && nextIsObj) ? '' : indentStr; // 如果当前是数组并且子项是对象，无需缩进
-                    result += isArray ? '' : ('' + i + ': ' + (nextIsObj && !leftBracesInSameLine ? '\n' : '') );
-                    result += (!nextIsObj || (nextIsObj && leftBracesInSameLine && !isArray)) ? '' : indentStr;
-                    result += format(obj[i], level+1); // 递归调用
-                }
-                result += '\n' + getIndentStr(level) + (isArray ? ']' : '}') + ',';
-            }
-            else // 如果是 null、number、boolean、string
-            {
-                var quot = typeof obj == 'string' ? "'" : '';//是否是字符串
-                result += (quot + obj + quot + ',');
-            }
-            return result;
-        }
-        return format(typeof json == 'object' ? json : eval('(' + json + ')')).replace(/,$/g, ''); // 使用eval的好处是可以解析非标准JSON
-    },
-    /**
      * 在Finder中打开某个文件或者路径
      */
     openFileInFinder: function(filePath) {
@@ -297,56 +253,7 @@ const util = {
         let s1 = this.formatToSpecialJSON(obj1, '', true);
         let s2 = this.formatToSpecialJSON(obj2, '', true);
         return s1 === s2;
-    },
-    /**
-     * 先这么写着，后续把几个JSON格式化的方法合并起来
-     * 格式化一段JSON字符串，支持解析非标准JSON
-     * 不同于绝大多数格式化工具，本方法支持设置缩进方式以及左大括号是否换行
-     * @start 2016-08-24
-     * @param {Object} json 要格式化的json串
-     * @param {Object} indent 缩进方式，可以是若干个空格和tab，默认tab缩进，如 2个空格："  "、4个空格："	"、tab："	"
-     * @param {Object} leftBracesInSameLine 左大括号是否保持在同一行，默认 false
-     */
-    formatToSpecialJSON: function (json, indent, leftBracesInSameLine)
-    {
-        function getIndentStr(level)
-        {
-            var str = '';
-            for(var i=0; i<level; i++) str += (indent || '	');
-            return str;
-        }
-        function format(obj, level)
-        {
-            level = level == undefined ? 0 : level;
-            var result = '';
-            if(typeof obj == 'object' && obj != null) // 如果是object或者array
-            {
-                var isArray = obj instanceof Array, idx = 0;
-                result += (isArray ? '[' : '{') + '\n';
-                let keys = obj;
-                if (!isArray) {
-                    keys = Object.keys(obj).sort();
-                }
-                keys.forEach((key, idx) => {
-                    let i = isArray ? idx : key;
-                    result += (idx++ > 0 ? '\n' : ''); // 如果不是数组或对象的第一个内容，追加逗号
-                    var nextIsObj = (typeof obj[i] == 'object' && obj[i] != null), indentStr = getIndentStr(level+1);
-                    result += (isArray && nextIsObj) ? '' : indentStr; // 如果当前是数组并且子项是对象，无需缩进
-                    result += isArray ? '' : ('' + i + ': ' + (nextIsObj && !leftBracesInSameLine ? '\n' : '') );
-                    result += (!nextIsObj || (nextIsObj && leftBracesInSameLine && !isArray)) ? '' : indentStr;
-                    result += format(obj[i], level+1); // 递归调用
-                });
-                result += '\n' + getIndentStr(level) + (isArray ? ']' : '}') + ',';
-            }
-            else // 如果是 null、number、boolean、string
-            {
-                var quot = typeof obj == 'string' ? "'" : '';//是否是字符串
-                result += (quot + obj + quot + ',');
-            }
-            return result;
-        }
-        return format(typeof json == 'object' ? json : eval('(' + json + ')')).replace(/,$/g, ''); // 使用eval的好处是可以解析非标准JSON
-    },
+    }
 };
 
 module.exports = util;
