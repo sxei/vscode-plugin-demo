@@ -14,9 +14,3 @@ VSCode插件开发全攻略系列文章配套demo。
 * [VSCode插件开发全攻略（八）代码片段、设置、自定义欢迎页](http://blog.haoji.me/vscode-plugin-snippets-and-settings.html)
 * [VSCode插件开发全攻略（九）常用API总结](http://blog.haoji.me/vscode-plugin-common-api.html)
 * [VSCode插件开发全攻略（十）打包、发布、升级](http://blog.haoji.me/vscode-plugin-publish.html)
-* VSCode插件开发全攻略（十一）自定义侧边栏、视图
-* VSCode插件开发全攻略（十二）颜色、图标主题
-* VSCode插件开发全攻略（十三）SCM
-* VSCode插件开发全攻略（十四）Language Server
-* VSCode插件开发全攻略（十五）Debug Adapter
-* VSCode插件开发全攻略（十六）新语言支持
